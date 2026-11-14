@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import productRoutes from "./routes/products.js";
 
 dotenv.config();
 
@@ -12,6 +13,8 @@ app.use(express.json());
 app.get("/api/health", (req, res) => {
   res.json({ ok: true });
 });
+
+app.use("/api/products", productRoutes);
 
 mongoose
   .connect(process.env.MONGO_URI)
